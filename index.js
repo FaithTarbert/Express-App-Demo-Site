@@ -1,11 +1,14 @@
+//this is your server
+
 const http = require('http');
 const port = 3000;
+//have to acquire files in handlers folder to access them
+const handlers = require('./handlers');
 
 http.createServer((req,res) => {
-    res.writeHead(200, {
-        'Contenet-Type': 'text/plain'
-    });
-
-    res.write('Hellow World!');
-    res.end();
+    for(let handler of handlers){
+        if(!handler(req, res)){
+            break;
+        }
+    }
 }).listen(port);

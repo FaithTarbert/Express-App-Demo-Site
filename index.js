@@ -1,7 +1,7 @@
 //this is your server
 
 const http = require('http');
-const port = 3000;
+const port = 3002;
 //have to acquire files in handlers folder to access them
 const handlers = require('./handlers');
 

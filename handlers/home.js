@@ -15,26 +15,10 @@ module.exports = (req, res) => {
     // Implement the logic for showing the home html view
     let filePath = path.normalize(path.join(__dirname, '../views/home/index.html'));
 
-    // fs.readFile(filePath, (err, data) => {
-    //   if(err) {
-    //     console.log(err);
-    //     res.write(404, {
-    //       "Content-Type": "text/plain"
-    //     });
-    //     res.write(404);
-    //     res.end();
-    //     return;
-    //   } 
-    //   res.writeHead(200, {
-    //     "Content-Type": "text/html" 
-    //   });
-    //   res.write(data);
-    //   res.end();
-    // });
-
     const index = fs.createReadStream(filePath);
 
     index.on('data', (data) => {
+      console.log(data);
       let modifiedCats = cats.map( (cat) => `<li>
       <img src="${path.join('C:/Users/faith/Desktop/ZeroToBlockchain/Projects/cat-shelter-faith/content/images/' + cat.image)}">
       <h3>${cat.name}</h3>
@@ -109,10 +93,14 @@ module.exports = (req, res) => {
       let newPath = path.normalize(path.join('C:/Users/faith/Desktop/ZeroToBlockchain/Projects/cat-shelter-faith/content/images/' + files.upload.name));
       console.log(newPath);
 
+      //need to fix cat id so it iterates
+      let counter = [04,03,02,07,09,34,23,09,76,45,22,32,99,76,56,01,15,77,66,55];
+      let catID = counter.shift();
       let catName = fields.name;
       let catDescription = fields.description;
       let catBreed = fields.breed;
       let newCatObj = {
+        id: catID,
         name: catName,
         description: catDescription,
         breed: catBreed

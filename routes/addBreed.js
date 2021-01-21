@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 router.post('/', (req, res, next) => {
     //do something
     console.log("someone clicked post");
-    console.log("the breed corm input is", req.body.breed);
+    console.log("the breed form input is", req.body.breed);
 
     //this is pulling the array from the breeds.json file so we can add the input from the form to it
       fs.readFile('./data/breeds.json', 'utf8' , (err, data) => {
@@ -20,7 +20,9 @@ router.post('/', (req, res, next) => {
         }
 
         let currentBreeds = JSON.parse(data);
+        console.log(currentBreeds);
         let newBreed = req.body.breed;
+        console.log(newBreed);
         //push new breed onto array
         currentBreeds.push(newBreed);
         // console.log("the breeds.json parsed data is ", currentBreeds);

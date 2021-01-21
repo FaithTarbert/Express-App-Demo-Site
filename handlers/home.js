@@ -1,3 +1,5 @@
+//this is our js file when we were using just core node modules to run routes grab data etc...replacing with express generator
+
 const url = require('url');
 const fs = require('fs');
 const path = require('path');

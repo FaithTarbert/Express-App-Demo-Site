@@ -14,6 +14,7 @@ var editCatRouter = require('./routes/editCat');
 var deleteCatRouter = require('./routes/deleteCat');
 var searchCatRouter = require('./routes/searchCats');
 
+
 //initialize the express library you required at the top - middleware below runs on top of express (which is my variable app.)
 var app = express();
 

@@ -11,6 +11,8 @@ var usersRouter = require('./routes/users');
 var addBreedRouter = require('./routes/addBreed');
 var addCatRouter = require('./routes/addCat');
 var editCatRouter = require('./routes/editCat');
+var deleteCatRouter = require('./routes/deleteCat');
+var searchCatRouter = require('./routes/searchCats');
 
 //initialize the express library you required at the top - middleware below runs on top of express (which is my variable app.)
 var app = express();
@@ -22,7 +24,9 @@ app.set('view engine', 'hbs');
 //MIDDLEWARE: app.use associates various middleware handlers that intercept http requests and does stuff before the response is sent...
 app.use(logger('dev'));
 //this replaces body-parser, which is now built into express, we call it by using .json()
-app.use(express.json());
+// const bodyParser = require('body-parser')
+// app.use('bodyParser', { urlencoded: true })
+// app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -31,10 +35,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //ROUTING(2):this designates the actual http path, also is the path to use in your hyperlinks on your html pages
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/cats/add-breed', addBreedRouter);
 app.use('/cats/add-cat', addCatRouter);
 app.use('/cats/edit-cat', editCatRouter);
+app.use('/cats/delete-cat', deleteCatRouter);
+app.use('/cats/search', searchCatRouter);
+// app.use('/users', usersRouter);
 
 // catch any 404s and forward to error handler
 app.use(function(req, res, next) {

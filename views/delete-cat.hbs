@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,31 +19,25 @@
             </ul>
         </nav>
         <h1>Cat Shelter</h1>
-        <form action="/cats/search/" method="GET">
-            <input type="text" name="search">
-            <button type="submit">Search</button>
-        </form>         
     </header>
 	
     <main>
-        <section class="cats">
+        
+        <form action="/cats/delete-cat/{{theCat.id}}" method="POST" class="delete-form" enctype="multipart/form-data">
+            
             <ul>
-                {{#each cats}}
-                <li>
-                    <img src="/images/{{this.image}}" alt="{{this.name}}">
-                    <h3>{{this.name}}</h3>
-                    <p><span>Breed: </span>{{this.breed}}</p>
-                    <p><span>Description: </span>{{this.description}}</p>
-                    <ul class="buttons">
-						<li class="btn edit"><a href="cats/edit-cat/{{this.id}}">Change Info</a></li>
-						<li class="btn delete"><a href="cats/delete-cat/{{this.id}}">Kitty Found a New Home! | Delete</a></li>
+            <div style="text-align: center;">
+            <h2>Find A New Home</h2>
+            
+            <img src="/images/{{theCat.image}}" alt="{{theCat.name}}" style="width: 200px">
+            <h3>{{theCat.name}}</h3>
+            <p><span>Breed: </span>{{theCat.breed}}</p>
+            <p><span>Description: </span>{{theCat.description}}</p>
+            <button style="margin-left: 50px" class="delete" type="submit">Delete Cat</button>
+            </div>
+            
             </ul>
-            </li>
-{{/each}}
-                
-            </ul>
-        </section>
+        </form>
     </main>
-
 </body>
 </html>

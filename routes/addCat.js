@@ -5,6 +5,7 @@ const fs = require('fs');
 const formidable = require('formidable');
 //require our data from local data file breeds.json and load into variable passed into template rendered by hbs
 let catBreeds = require('../data/breeds.json');
+var path = require('path');
 
 
 /* GET add a cat form. Render means we are rendering an hbs template html file from the Views folder*/
@@ -33,7 +34,8 @@ router.post('/', (req, res, next) => {
     //get the temp file path for the image submitted with the form
     let oldPath = files.upload.path;
     //designate the final path name for the image once it's re-saved to the static/public folder
-    let newPath = 'C:/Users/faith/Desktop/ZeroToBlockchain/Projects/cat-shelter-faith/public/images/' + files.upload.name;
+    // let newPath = 'C:/Users/faith/Desktop/ZeroToBlockchain/Projects/cat-shelter-faith/public/images/' + files.upload.name;
+    let newPath = path.normalize(path.join(__dirname, "../public/images/" + files.upload.name));
     // console.log(newPath);
 
     //create dynamic cat id from truncated temp pic file path name ie 'C:\Users\faith\AppData\Local\Temp\upload_e2cc3b7b5601f6c930dee1e07a2f98d2'
